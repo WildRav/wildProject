@@ -20,13 +20,17 @@ if(isset($_GET['p'])){
     $p= 'home';
 }
 
+//Initialisation des Objets
+
+$db = new App\Database('wildprojectbdd');
+
 ob_start();
 
 if($p=== 'home'){
 
     require '../pages/home.php'  ;
    }
-   elseif ($p==='single'){
+   elseif ($p==='article'){
 
         require'../pages/single.php';
    }
