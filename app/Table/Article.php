@@ -7,16 +7,30 @@
  */
 
 namespace App\Table;
+use App\App;
+use App\Table\Categorie;
+use App\Table\Table;
 
-    class Article{
+    class Article extends Table {
 
-        public function __get($key)
-        {
-            // TODO: Implement __get() method.
-           $method = 'get' . ucfirst($key);
-           $this->$key = $this->$method() ;
-           return $this->$key;
+        protected static $table='articles';
 
+        public static function getLast(){
+
+            return self::query('SELECT articles.id,articles.titre, articles.content, categories.titre as categories 
+                                                        FROM articles 
+                                                        LEFT JOIN categories 
+                                                          ON categorie_id = categories.id');
+
+        }
+
+        public static function lastByCategory($category_id){
+
+            return self::query('SELECT articles.id,articles.titre, articles.content, categories.titre as categories 
+                                                        FROM articles 
+                                                        LEFT JOIN categories 
+                                                          ON categorie_id = categories.id
+                                                          WHERE categorie_id = ?', [$category_id]);
 
         }
 
