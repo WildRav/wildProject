@@ -17,12 +17,7 @@ $categories = Categorie::all();
 <h1><?= $categorie->titre;?></h1>
 <div class="row">
         <div class="col-sm-8">
-            <?php
-
-
-
-            foreach ($articles as $post):
-                ?>
+            <?php foreach ($articles as $post):  ?>
 
 
                 <h2> <a href="<?= $post->url; ?>"><?= $post->titre; ?></a></h2>
@@ -31,9 +26,7 @@ $categories = Categorie::all();
 
                 <p> <?= $post->extrait; ?></p>
 
-                <?php
-            endforeach;
-            ?>
+                <?php  endforeach; ?>
 
 </div>
 
@@ -42,6 +35,7 @@ $categories = Categorie::all();
         <?php foreach (App\Table\Categorie::all() as $categorie): ?>
 
             <li><a href="<?=$categorie->url; ?>"><?= $categorie->titre; ?></a></li>
+
         <?php endforeach; ?>
     </ul>
 </div>
