@@ -15,12 +15,20 @@ use App\Table\Table;
 
         protected static $table='articles';
 
+        public static function find($id){
+            return self::query('SELECT articles.id,articles.titre, articles.content, categories.titre as categories 
+                                                        FROM articles 
+                                                        LEFT JOIN categories ON categorie_id = categories.id
+                                                        WHERE articles.id = ? 
+                                            ',[$id],true);
+        }
+
         public static function getLast(){
 
             return self::query('SELECT articles.id,articles.titre, articles.content, categories.titre as categories 
                                                         FROM articles 
-                                                        LEFT JOIN categories 
-                                                          ON categorie_id = categories.id');
+                                                        LEFT JOIN categories ON categorie_id = categories.id
+                                                        ORDER BY  articles.date DESC');
 
         }
 
@@ -30,7 +38,8 @@ use App\Table\Table;
                                                         FROM articles
                                                         LEFT JOIN categories
                                                         ON categorie_id = categories.id
-                                                        WHERE categorie_id = ?',[$categorie_id]);
+                                                        WHERE categorie_id = ?
+                                                        ORDER BY  articles.date DESC',[$categorie_id]);
 
         }
 

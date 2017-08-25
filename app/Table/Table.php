@@ -15,23 +15,13 @@ class Table
 {
     protected static $table;
 
-    private static function getTable(){
-
-        if(static::$table === null){
-           $class_name = explode('\\',get_called_class());
-           static::$table =strtolower(end($class_name)) . 's';
-        }
-
-        return static::$table;
-
-    }
 
     public static function find($id){
-        return App::getDatabase()->prepare('
+        return static::query('
                                             SELECT  * 
-                                            FROM '. static::getTable(). '
+                                            FROM '. static::$table. '
                                             WHERE id = ? 
-                                            ',[$id],get_called_class(),true);
+                                            ',[$id],true);
     }
 
     public static function query($statement, $attributes = null,$one = false ){
@@ -49,7 +39,7 @@ class Table
     public static function all(){
 
         return App::getDatabase()->query('SELECT  * 
-                                            FROM '. static::getTable(). ' 
+                                            FROM '. static::$table. ' 
                                             ',get_called_class());
 
     }
