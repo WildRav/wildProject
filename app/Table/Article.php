@@ -34,6 +34,7 @@ use App\Table\Table;
 
         public static function lastByCategory($categorie_id){
 
+
             return self::query('SELECT articles.id,articles.titre, articles.content, categories.titre as categories
                                                         FROM articles
                                                         LEFT JOIN categories
