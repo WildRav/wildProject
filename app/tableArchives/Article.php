@@ -13,7 +13,7 @@ use App\Table\Table;
 
     class Article extends Table {
 
-        protected static $table='articles';
+        protected static $table='posts';
 
         public static function find($id){
             return self::query('SELECT articles.id,articles.titre, articles.content, categories.titre as categories 

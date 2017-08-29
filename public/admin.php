@@ -1,12 +1,14 @@
-
-
 <?php
 /**
  * Created by PhpStorm.
- * User: Annise
- * Date: 05/08/2017
- * Time: 22:59
+ * User: Wildy
+ * Date: 28/08/2017
+ * Time: 17:34
  */
+
+
+use Core\Auth\AuthDatabase;
+
 define('ROOT', dirname(__DIR__));
 require ROOT .'/app/App.php';
 App::load();
@@ -17,17 +19,26 @@ if(isset($_GET['p'])){
     $page = 'home';
 }
 
+//Auth
+$app = App::getInstance() ;
+
+$auth = new AuthDatabase($app->getDb());
+
+if(!$auth->isConnected()){
+
+    $app->isForbidden();
+
+}
+
 ob_start();
 
 if($page === 'home'){
 
-    require ROOT . '/pages/posts/home.php';
+    require ROOT . '/pages/admin/posts/index.php';
 } else if ($page==='posts.categorie') {
-    require ROOT . '/pages/posts/categorie.php';
+    require ROOT . '/pages/admin/posts/categorie.php';
 }else if($page ==='posts.show'){
-    require ROOT . '/pages/posts/show.php';
-}else if($page === 'login'){
-    require ROOT . '/pages/users/login.php';
+    require ROOT . '/pages/admin/posts/show.php';
 }
 
 $content= ob_get_clean();

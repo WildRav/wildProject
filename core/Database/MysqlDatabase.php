@@ -5,10 +5,10 @@
  * Date: 13/08/2017
  * Time: 15:35
  */
-namespace  App;
+namespace  Core\Database;
 use \PDO;
 
-class Database {
+class MysqlDatabase extends Database{
 
     private $db_name;
     private $db_user;
@@ -44,11 +44,17 @@ class Database {
 
     }
 
-    public function query($statement,$class_name,$one=false){
+    public function query($statement,$class_name = null,$one=false){
 
 
         $req = $this->getPDO()-> query($statement);
-        $req->setFetchMode(PDO::FETCH_CLASS,$class_name);
+
+        if($class_name === null ){
+            $req ->setFetchMode(PDO::FETCH_OBJ);
+        }else{
+            $req->setFetchMode(PDO::FETCH_CLASS,$class_name);
+        }
+
 
 
         if($one) {
@@ -64,12 +70,24 @@ class Database {
 
     }
 
-    public function prepare($statement,$attributes, $class_name, $one= false){
+    /**
+     * @param $statement
+     * @param $attributes
+     * @param null $class_name
+     * @param bool $one
+     * @return array|mixed
+     */
+    public function prepare($statement, $attributes, $class_name= null , $one= false){
 
         $req = $this->getPDO()->prepare($statement);
         $req->execute($attributes);
-        $req->setFetchMode(PDO::FETCH_CLASS,$class_name);
+        if($class_name === null){
+            $req ->setFetchMode(PDO::FETCH_OBJ);
 
+        }
+        else {
+            $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        }
         if($one) {
             $datas = $req -> fetch();
 

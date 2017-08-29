@@ -6,18 +6,16 @@
  * Time: 00:19
  */
 
-use App\App;
-use App\Table\Article;
-use App\Table\Categorie;
+$app = App::getInstance();
+$post = $app->getTable('Post')->find($_GET['id']);
 
-$post = Article::find($_GET['id']);
 
 if($post === false){
 
-    App::notFound();
+    $app->notFound();
 }
 
-App::setTitle($post->titre);
+$app->tile = $post->titre;
 
 
 

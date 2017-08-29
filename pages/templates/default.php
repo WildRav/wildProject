@@ -17,7 +17,7 @@
     <meta name="author" content="Annise Mayoute">
 
 
-    <title><?= \App\App::getTitle();?></title>
+    <title><?= App::getInstance()->title;?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
