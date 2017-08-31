@@ -7,7 +7,8 @@
  */
 
 $app = App::getInstance();
-$post = $app->getTable('Post')->find($_GET['id']);
+$post = $app->getTable('Post')->findWithCategory($_GET['id']);
+
 
 
 if($post === false){
@@ -15,14 +16,13 @@ if($post === false){
     $app->notFound();
 }
 
-$app->tile = $post->titre;
-
-
+$app->title;
+    $test= $post->titre;
 
 ?>
 
 <h1><?= $post -> titre; ?></h1>
 
-<p><em><?= $post->categories; ?></em></p>
+<p><em><?= $post->categorie; ?></em></p>
 
 <p> <?= $post -> content ;?></p>

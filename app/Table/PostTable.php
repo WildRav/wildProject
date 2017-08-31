@@ -7,17 +7,20 @@
  */
 
 namespace App\Table;
+
 use Core\Table\Table;
 
 
-class PostTable extends  Table{
+class PostTable extends Table
+{
 
     protected $table = 'articles';
 
     /**Récupère les derniers posts en retournant un array**/
-    public function last(){
+    public function last()
+    {
 
-        return $this->query('SELECT articles.id,articles.titre, articles.content, categories.titre as categories 
+        return $this->query('SELECT articles.id,articles.titre, articles.content, categories.titre AS categories 
                                                         FROM articles 
                                                         LEFT JOIN categories ON categorie_id = categories.id
                                                         ORDER BY  articles.date DESC');
@@ -26,25 +29,27 @@ class PostTable extends  Table{
 
     /**récupere artciles + lien categorie associée **/
 
-    public  function find($id){
-        return $this->query('SELECT articles.id,articles.titre, articles.content, categories.titre as categories 
+    public function findWithCategory($id)
+    {
+        return $this->query('SELECT articles.id, articles.titre, articles.content, articles.date, articles.categorie_id, categories.titre as categorie
                                                         FROM articles 
                                                         LEFT JOIN categories ON categorie_id = categories.id
                                                         WHERE articles.id = ? 
-                                            ',[$id],true);
+                                            ', [$id], true);
     }
 
     /**récupère dernier articles categore demandes **/
 
-    public  function lastByCategory($categorie_id){
+    public function lastByCategory($categorie_id)
+    {
 
 
-        return $this->query('SELECT articles.id,articles.titre, articles.content, categories.titre as categories
+        return $this->query('SELECT articles.id,articles.titre, articles.content, categories.titre AS categories
                                                         FROM articles
                                                         LEFT JOIN categories
                                                         ON categorie_id = categories.id
                                                         WHERE categorie_id = ?
-                                                        ORDER BY  articles.date DESC',[$categorie_id]);
+                                                        ORDER BY  articles.date DESC', [$categorie_id]);
 
     }
 

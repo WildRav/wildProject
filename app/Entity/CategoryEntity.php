@@ -12,12 +12,12 @@ use Core\Entity\Entity;
 
 class CategoryEntity extends Entity
 {
-    public function getURL(){
+    public function getURL()
+    {
 
-        return 'index.php?p=posts.categorie&id='. $this->id;
+        return 'index.php?p=posts.categorie&id=' . $this->id;
 
     }
-
 
 
 }

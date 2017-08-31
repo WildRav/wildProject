@@ -7,6 +7,7 @@
  */
 
 namespace App\Table;
+
 use App\App;
 use App\Table\Categorie;
 
@@ -16,31 +17,32 @@ class Table
     protected static $table;
 
 
-    public static function find($id){
+    public static function find($id)
+    {
         return static::query('
                                             SELECT  * 
-                                            FROM '. static::$table. '
+                                            FROM ' . static::$table . '
                                             WHERE id = ? 
-                                            ',[$id],true);
+                                            ', [$id], true);
     }
 
-    public static function query($statement, $attributes = null,$one = false ){
+    public static function query($statement, $attributes = null, $one = false)
+    {
 
 
-        if($attributes){
-            return App::getDatabase()->prepare($statement, $attributes, get_called_class(),$one);
-        }
-
-        else{
-            return App::getDatabase()->query($statement, get_called_class(),$one);
+        if ($attributes) {
+            return App::getDatabase()->prepare($statement, $attributes, get_called_class(), $one);
+        } else {
+            return App::getDatabase()->query($statement, get_called_class(), $one);
         }
     }
 
-    public static function all(){
+    public static function all()
+    {
 
         return App::getDatabase()->query('SELECT  * 
-                                            FROM '. static::$table. ' 
-                                            ',get_called_class());
+                                            FROM ' . static::$table . ' 
+                                            ', get_called_class());
 
     }
 
@@ -48,7 +50,7 @@ class Table
     {
         // TODO: Implement __get() method.
         $method = 'get' . ucfirst($key);
-        $this->$key = $this->$method() ;
+        $this->$key = $this->$method();
         return $this->$key;
     }
 
