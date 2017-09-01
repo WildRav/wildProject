@@ -42,12 +42,25 @@ else if ($page === 'posts.add') {
 else if ($page === 'posts.edit') {
     require ROOT . '/pages/admin/posts/edit.php';
 }
-else if ($page === 'posts.categorie') {
-    require ROOT . '/pages/admin/posts/categorie.php';
+else if ($page === 'posts.delete') {
+    require ROOT . '/pages/admin/posts/delete.php';
 }
-else if ($page === 'posts.show') {
-    require ROOT . '/pages/admin/posts/show.php';
+
+
+else if ($page === 'categories.index') {
+
+    require ROOT . '/pages/admin/categories/index.php';
 }
+else if ($page === 'categories.add') {
+    require ROOT . '/pages/admin/categories/add.php';
+}
+else if ($page === 'categories.edit') {
+    require ROOT . '/pages/admin/categories/edit.php';
+}
+else if ($page === 'categories.delete') {
+    require ROOT . '/pages/admin/categories/delete.php';
+}
+
 
 $content = ob_get_clean();
 require ROOT . '/pages/templates/default.php';

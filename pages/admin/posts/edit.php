@@ -20,7 +20,7 @@ if (!empty($_POST)) {
     if ($result) {
         ?>
 
-        <div class="alert alert-success">L'article a bien été ajouté.</div>
+        <div class="alert alert-success">L'article a bien été modifié.</div>
 
         <?php
     }

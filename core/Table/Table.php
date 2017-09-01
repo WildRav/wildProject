@@ -67,6 +67,12 @@ class Table
 
     }
 
+
+    public function delete($id){
+
+        return $this->query("DELETE FROM {$this->table}  WHERE id = ? " ,[$id],true);
+
+    }
     public function listOfValue($key, $value){
 
         $records=$this->all();

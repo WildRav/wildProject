@@ -23,7 +23,6 @@ if (!empty($_POST)) {
         <div class="alert alert-danger">
             Identifiants incorrects
 
-            <?= var_dump(sha1($_POST['password']));?>
         </div>
         <?php
     }

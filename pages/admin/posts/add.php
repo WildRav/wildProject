@@ -19,7 +19,7 @@ if (!empty($_POST)) {
 
 
     if ($result) {
-       header('Location: admin.php?p=posts.edit&id=' .App::getInstance()->getDb()->lastInsertId());
+       header('Location: admin.php?p=posts.edit&id=' . App::getInstance()->getDb()->lastInsertId());
     }
 }
 
