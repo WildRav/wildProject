@@ -14,23 +14,17 @@ App::load();
 if(isset($_GET['p'])){
     $page = $_GET['p'];
 }else{
-    $page = 'home';
+    $page = 'posts.index';
 }
 
-ob_start();
+$page = explode('.',$page);
 
-if($page === 'home'){
-
-    require ROOT . '/pages/posts/home.php';
-} else if ($page==='posts.categorie') {
-    require ROOT . '/pages/posts/categorie.php';
-}else if($page ==='posts.show'){
-    require ROOT . '/pages/posts/show.php';
-}else if($page === 'login'){
-    require ROOT . '/pages/users/login.php';
+if($page[0] == 'admin'){
+    $controller= '\App\Controller\Admin\\'. ucfirst($page[1]) . 'Controller';
+    $action = $page[2];
+} else {
+    $controller = '\App\Controller\\' . ucfirst($page[0]) . 'Controller';
+    $action = $page[1];
 }
-
-$content= ob_get_clean();
-require ROOT . '/pages/templates/default.php';
-
-
+$controller = new $controller;
+$controller->$action();

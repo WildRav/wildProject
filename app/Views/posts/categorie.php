@@ -1,27 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Lukz0r
- * Date: 19/08/2017
- * Time: 00:41
- */
-
-
-$app = App::getInstance();
-$categorie = $app->getTable('Category')->find($_GET['id']);
-
-
-if($categorie === false){
-
-  App\App::notFound();
-
-}
-
-$articles = $app->getTable('Post')->lastByCategory($_GET['id']);
-$categories = $app->getTable('Category')->all();
-
-?>
-
 <h1><?= $categorie->titre;?></h1>
 <div class="row">
     <div class="col-sm-8">

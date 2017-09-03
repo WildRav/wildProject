@@ -1,14 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Annise
- * Date: 06/08/2017
- * Time: 00:12
- */
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -28,8 +17,9 @@
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="index.php?p=home">HomePage</a>
+            <div class="navbar-header">
+            <a class="navbar-brand" href="index.php">HomePage</a>
+            <a class="navbar-brand" href="index.php?p=users.login">Login</a>
         </div>
     </div>
 </nav>
